@@ -9,5 +9,5 @@
 ### Steps to Set Up
 1. Clone the repository:
    ```bash
-   git clone <REPOSITORY_URL>
+   git clone https://github.com/nonnymox/alx_event_api.git
    cd alx_event_api
