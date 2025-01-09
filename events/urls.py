@@ -1,9 +1,9 @@
 # events/urls.py
-
 from django.urls import path
-from .views import EventListView, CreateEventView
+from .views import EventListView, EventCreateView, EventRetrieveUpdateDestroyView
 
 urlpatterns = [
-    path('', EventListView.as_view(), name='event_list'),  # Event list URL
-    path('create/', CreateEventView.as_view(), name='create_event'),
+    path('events/', EventListView.as_view(), name='event-list'),  # URL for listing events
+    path('events/create', EventCreateView.as_view(), name='event-create'),  # URL for creating events
+    path('events/<int:pk>/', EventRetrieveUpdateDestroyView.as_view(), name='event-detail'),  # URL for retrieving, updating, and deleting events
 ]

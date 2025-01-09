@@ -4,7 +4,7 @@ from .views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),  # Removed './'
-    path('events/', include('events.urls')),  # Removed './'
+    path('api/', include('users.urls')),  # Removed './'
+    path('api/', include('events.urls')),  # Removed './'
     path('', home),  # Add this line for the root URL
 ]

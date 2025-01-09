@@ -4,4 +4,5 @@ from .models import Event
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['id', 'title', 'date', 'location', 'description', 'created_by']
+        fields = '__all__'
+        read_only_fields = ['created_by', 'created_at']  # Ensure `created_by` and `created_at` are read-only
