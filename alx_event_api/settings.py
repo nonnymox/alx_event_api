@@ -79,10 +79,15 @@ WSGI_APPLICATION = 'alx_event_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'event_db',  # The name of the database you created
+        'USER': 'root',  # Your MySQL username
+        'PASSWORD': 'on2Greatness!',  # Your MySQL password
+        'HOST': 'localhost',  # Or your MySQL server host
+        'PORT': '3306',  # Default MySQL port
     }
 }
+
 
 
 # Password validation
