@@ -6,11 +6,11 @@ from .serializers import EventSerializer
 # View for listing events
 class EventListView(generics.ListAPIView):
     """
-    Retrieve a list of all events. Authenticated users can see all events.
+    Retrieve a list of all events. All users can see all events.
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
 
 
 # View for creating events
