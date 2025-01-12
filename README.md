@@ -15,6 +15,10 @@ This API allows users to manage events, including creating, retrieving, updating
    - Automatically associate events with the authenticated user.
 3. **Secure Endpoints**
    - JWT authentication ensures that only authorized users can access protected endpoints.
+4. **Event Registration**
+   - Register for event when the maximum capacity hasn't been reached.
+   - View the capacity and the number of attendees..
+   - View the waitlist (Only for authenticated users) 
 
 ---
 
@@ -102,7 +106,7 @@ This API allows users to manage events, including creating, retrieving, updating
           "status": "active",
           "capacity": 100,
           "created_at": "2025-01-09T14:21:56.113805Z",
-          "created_by": 1
+          "organizer": 1
       }
   ]
   ```
@@ -134,7 +138,7 @@ This API allows users to manage events, including creating, retrieving, updating
       "status": "active",
       "capacity": 100,
       "created_at": "2025-01-09T14:21:56.113805Z",
-      "created_by": 1
+      "organizer": "user1",
   }
   ```
 
@@ -165,7 +169,7 @@ This API allows users to manage events, including creating, retrieving, updating
       "status": "active",
       "capacity": 150,
       "created_at": "2025-01-09T14:21:56.113805Z",
-      "created_by": 1
+      "organizer": "user1"
   }
   ```
 
@@ -180,6 +184,57 @@ This API allows users to manage events, including creating, retrieving, updating
       "detail": "Event deleted successfully"
   }
   ```
+### Event Registration and Capacity
+
+#### 1. **Register for Event**
+
+- **Endpoint**: `/api/events/<id>/register`
+- **Method**: `POST`
+- **Headers**: `None Needed`
+- **Payload**:
+  ```json
+  {
+      "name": "NEW USER",
+      "email": "newuser@mail.com"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+      "Registered for event successfully"
+  }
+  ```
+
+  #### 2. **View Capacity**
+
+- **Endpoint**: `/api/events/<id>/capacity`
+- **Method**: `GET`
+- **Headers**: `None Needed`
+- **Payload**:
+- **Response**:
+  ```json
+  {
+    "capacity": 100,
+    "attendees_count": 2,
+    "available_slots": 98
+  }
+
+  ```
+ #### 3. **View Waitlist**
+
+- **Endpoint**: `/api/events/<id>/waitlist`
+- **Method**: `GET`
+- **Headers**: `Authorization: Bearer <access_token>`
+- **Payload**:
+- **Response**:
+  ```json
+  {
+    "waitlist": []
+  }
+
+  ```
+
+
 
 ---
 
@@ -199,8 +254,9 @@ This API allows users to manage events, including creating, retrieving, updating
    source venv/bin/activate
    pip install -r requirements.txt
    ```
+3. Set up MySQL server and database in settings.py
 
-3. Run migrations and start the server:
+4. Run migrations and start the server:
 
    ```bash
    python manage.py migrate
@@ -209,7 +265,7 @@ This API allows users to manage events, including creating, retrieving, updating
 
 4. Access the API at:
 
-   - `http://127.0.0.1:8000/api/`
+   - `http://127.0.0.1:8000/`
 
 ---
 
@@ -226,8 +282,6 @@ This API allows users to manage events, including creating, retrieving, updating
 ---
 
 ## Notes
-
-- Ensure the `created_by` field for events is handled automatically via the `perform_create` method.
 - Test endpoints using tools like Postman or cURL to validate functionality.
 
 ---

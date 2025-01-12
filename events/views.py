@@ -65,10 +65,9 @@ class EventRegisterView(APIView):
     """
     permission_classes = [permissions.AllowAny]
 
-    def post(self, request):
-        # Retrieve the event by its title
-        event_title = request.data.get("event")
-        event = get_object_or_404(Event, title=event_title)
+    def post(self, request, event_id):
+        # Retrieve the event by its id
+        event = get_object_or_404(Event, id=event_id)
 
         # Check if the event is full
         if event.is_full():
